@@ -12,6 +12,9 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using beerApp.DataModel;
+using Newtonsoft.Json;
+using Newtonsoft.Json.Linq;
 
 namespace beerApp
 {
@@ -24,14 +27,18 @@ namespace beerApp
         {
             InitializeComponent();
         }
+        string strResponse = String.Empty;
 
         private void Bgraball_Click(object sender, RoutedEventArgs e)
         {
             RestClient.RestClient rClient = new RestClient.RestClient();
             rClient.endPoint = "https://api.punkapi.com/v2/beers";
             // Magic - Get JSON file
-            string strResponse = String.Empty;
             strResponse = rClient.MakeRequest();
+            var data = JsonConvert.DeserializeObject<IList<BeerData>>(strResponse);
+            var firstBeer = data[0];
+            Lbeername.Content = firstBeer;
         }
+
     }
 }
