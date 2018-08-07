@@ -24,5 +24,14 @@ namespace beerApp
         {
             InitializeComponent();
         }
+
+        private void Bgraball_Click(object sender, RoutedEventArgs e)
+        {
+            RestClient.RestClient rClient = new RestClient.RestClient();
+            rClient.endPoint = "https://api.punkapi.com/v2/beers";
+            // Magic - Get JSON file
+            string strResponse = String.Empty;
+            strResponse = rClient.MakeRequest();
+        }
     }
 }
