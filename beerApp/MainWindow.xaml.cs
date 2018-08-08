@@ -98,16 +98,23 @@ namespace beerApp
                 Bnext.IsEnabled = true;
                 Bprevious.IsEnabled = true;
             }
+            else
+            {
+                Tbbeerdescription.Text = "NO BEER GRABED FROM API !";
+            }
         }
 
         private void Bbeername_Click(object sender, RoutedEventArgs e)
         {
-            rClient.endPoint = "https://api.punkapi.com/v2/beers" + "?beer_name=" + Tbbeername;
+            rClient.endPoint = "https://api.punkapi.com/v2/beers" + "?beer_name=" + Tbbeername; 
+            //rClient.endPoint = "https://api.punkapi.com/v2/beers?beer_name=dog";
+  
             // Magic - Get JSON file
             strResponse = rClient.MakeRequest();
             var data = JsonConvert.DeserializeObject<IList<BeerData.AllInfo>>(strResponse);
             if (data.Count != 0)
             {
+                memory = data;
                 var byname = data[0];
                 // Data for random beer
                 // Name field
@@ -130,6 +137,10 @@ namespace beerApp
                 // Enable buttons to scroll trough data
                 Bnext.IsEnabled = true;
                 Bprevious.IsEnabled = true;
+            }
+            else
+            {
+                Tbbeerdescription.Text = "NO BEER GRABED FROM API !";
             }
         }
 

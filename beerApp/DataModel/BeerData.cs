@@ -98,7 +98,8 @@ namespace beerApp.DataModel
             public double? ibu { get; set; }
             public int target_fg { get; set; }
             public double target_og { get; set; }
-            public int? ebc { get; set; }
+            //public int? ebc { get; set; }
+            public double? ebc { get; set; }
             public double? srm { get; set; }
             public double? ph { get; set; }
             public double attenuation_level { get; set; }
