@@ -108,7 +108,6 @@ namespace beerApp
             var data = JsonConvert.DeserializeObject<IList<BeerData.AllInfo>>(strResponse);
             if (data.Count != 0)
             {
-                memory = data;
                 var byname = data[0];
                 // Data for random beer
                 // Name field
@@ -140,10 +139,12 @@ namespace beerApp
             if (navigation > 0)
             {
                 navigation--;
+                Bnext.IsEnabled = true;
             }
             else
             {
                 // Lower limit
+                Bprevious.IsEnabled = false;
             }
 
             var container = memory[navigation];
@@ -204,10 +205,12 @@ namespace beerApp
             if (navigation < memory.Count -1)
             {
                 navigation++;
+                Bprevious.IsEnabled = true;
             }
             else
             {
                 // Lower limit
+                Bnext.IsEnabled = false;
             }
 
             var container = memory[navigation];

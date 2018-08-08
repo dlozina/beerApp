@@ -27,7 +27,7 @@
                     <ColumnDefinition Width="1*" />
                 </Grid.ColumnDefinitions>
                 <Button Margin="1" Grid.Column="1" x:Name="Bgraball" FontWeight="Bold" Content="GRAB ALL THE BEERs" Click="Bgraball_Click"/>
-                <Grid Grid.Column="0">
+                <Grid Grid.Column="2">
                     <Grid.RowDefinitions>
                         <RowDefinition Height="1*"/>
                         <RowDefinition Height="1*"/>
@@ -35,8 +35,7 @@
                     <Button Margin="1" Grid.Row="0" x:Name="Bbeername" FontWeight="Bold" Content="GRAB BEERs BY NAME" Click="Bbeername_Click"/>
                     <TextBox Margin="1" Grid.Row="1" x:Name="Tbbeername" FontWeight="Bold" HorizontalContentAlignment="Center" VerticalContentAlignment="Center"/>
                 </Grid>
-
-                <Grid Grid.Column="2">
+                <Grid Grid.Column="0">
                     <Grid.RowDefinitions>
                         <RowDefinition Height="1*"/>
                         <RowDefinition Height="1*"/>
