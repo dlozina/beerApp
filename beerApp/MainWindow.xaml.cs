@@ -26,8 +26,14 @@ namespace beerApp
         public MainWindow()
         {
             InitializeComponent();
+            Bnext.IsEnabled = false;
+            Bprevious.IsEnabled = false;
         }
         string strResponse = String.Empty;
+        // Navigation for bottun NEXT, PREVIOUS
+        private int navigation = 0;
+        // Global list for memory
+        private IList<BeerData.AllInfo> memory;  
         RestClient.RestClient rClient = new RestClient.RestClient();
 
         private void Bgraball_Click(object sender, RoutedEventArgs e)
@@ -36,6 +42,7 @@ namespace beerApp
             // Magic - Get JSON file
             strResponse = rClient.MakeRequest();
             var data = JsonConvert.DeserializeObject<IList<BeerData.AllInfo>>(strResponse);
+            memory = data;
             var firstBeer = data[0];
             // Name field
             Lbeername.Content = "NAME: " + firstBeer.name;
@@ -54,6 +61,9 @@ namespace beerApp
             bitmap.UriSource = new Uri(fullFilePath, UriKind.Absolute);
             bitmap.EndInit();
             Ibeerimage.Source = bitmap;
+            // Enable buttons to scroll trough data
+            Bnext.IsEnabled = true;
+            Bprevious.IsEnabled = true;
         }
 
         private void Bbyyear_Click(object sender, RoutedEventArgs e)
@@ -64,6 +74,7 @@ namespace beerApp
             var data = JsonConvert.DeserializeObject<IList<BeerData.AllInfo>>(strResponse);
             if (data.Count != 0)
             {
+                memory = data;
                 var byyear = data[0];
                 // Data for random beer
                 // Name field
@@ -83,6 +94,9 @@ namespace beerApp
                 bitmap.UriSource = new Uri(fullFilePath, UriKind.Absolute);
                 bitmap.EndInit();
                 Ibeerimage.Source = bitmap;
+                // Enable buttons to scroll trough data
+                Bnext.IsEnabled = true;
+                Bprevious.IsEnabled = true;
             }
         }
 
@@ -94,6 +108,7 @@ namespace beerApp
             var data = JsonConvert.DeserializeObject<IList<BeerData.AllInfo>>(strResponse);
             if (data.Count != 0)
             {
+                memory = data;
                 var byname = data[0];
                 // Data for random beer
                 // Name field
@@ -113,12 +128,43 @@ namespace beerApp
                 bitmap.UriSource = new Uri(fullFilePath, UriKind.Absolute);
                 bitmap.EndInit();
                 Ibeerimage.Source = bitmap;
+                // Enable buttons to scroll trough data
+                Bnext.IsEnabled = true;
+                Bprevious.IsEnabled = true;
             }
         }
 
         private void Bprevious_Click(object sender, RoutedEventArgs e)
         {
+            // Decrement data source
+            if (navigation > 0)
+            {
+                navigation--;
+            }
+            else
+            {
+                // Lower limit
+            }
 
+            var container = memory[navigation];
+            // Data for random beer
+            // Name field
+            Lbeername.Content = "NAME: " + container.name;
+            // Description
+            Tbbeerdescription.Text = "DESCRIPTION: " + container.description;
+            // First Brewd
+            LfirstBrewd.Content = "FIRST BREWD: " + container.first_brewed;
+            // ABV
+            Labv.Content = "ABV: " + container.abv;
+            // Food paring first choice
+            Lfoodparing.Content = "FOOD PARING: " + container.food_pairing[0];
+            // Beer image
+            var fullFilePath = @container.image_url;
+            BitmapImage bitmap = new BitmapImage();
+            bitmap.BeginInit();
+            bitmap.UriSource = new Uri(fullFilePath, UriKind.Absolute);
+            bitmap.EndInit();
+            Ibeerimage.Source = bitmap;
         }
 
         private void Brandom_Click(object sender, RoutedEventArgs e)
@@ -127,6 +173,7 @@ namespace beerApp
             // Magic - Get JSON file
             strResponse = rClient.MakeRequest();
             var data = JsonConvert.DeserializeObject<IList<BeerData.AllInfo>>(strResponse);
+            memory = data;
             var randomdata = data[0];
             // Data for random beer
             // Name field
@@ -146,11 +193,42 @@ namespace beerApp
             bitmap.UriSource = new Uri(fullFilePath, UriKind.Absolute);
             bitmap.EndInit();
             Ibeerimage.Source = bitmap;
+            // Disable buttons to scroll trough data
+            Bnext.IsEnabled = false;
+            Bprevious.IsEnabled = false;
         }
 
         private void Bnext_Click(object sender, RoutedEventArgs e)
         {
-            
+            // Increment data source
+            if (navigation < memory.Count -1)
+            {
+                navigation++;
+            }
+            else
+            {
+                // Lower limit
+            }
+
+            var container = memory[navigation];
+            // Data for random beer
+            // Name field
+            Lbeername.Content = "NAME: " + container.name;
+            // Description
+            Tbbeerdescription.Text = "DESCRIPTION: " + container.description;
+            // First Brewd
+            LfirstBrewd.Content = "FIRST BREWD: " + container.first_brewed;
+            // ABV
+            Labv.Content = "ABV: " + container.abv;
+            // Food paring first choice
+            Lfoodparing.Content = "FOOD PARING: " + container.food_pairing[0];
+            // Beer image
+            var fullFilePath = @container.image_url;
+            BitmapImage bitmap = new BitmapImage();
+            bitmap.BeginInit();
+            bitmap.UriSource = new Uri(fullFilePath, UriKind.Absolute);
+            bitmap.EndInit();
+            Ibeerimage.Source = bitmap;
         }
 
     }
