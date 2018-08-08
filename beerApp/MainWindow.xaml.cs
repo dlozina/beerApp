@@ -92,22 +92,22 @@ namespace beerApp
             // Magic - Get JSON file
             strResponse = rClient.MakeRequest();
             var data = JsonConvert.DeserializeObject<IList<BeerData.AllInfo>>(strResponse);
-            var byyear = data[0];
             if (data.Count != 0)
             {
+                var byname = data[0];
                 // Data for random beer
                 // Name field
-                Lbeername.Content = "NAME: " + byyear.name;
+                Lbeername.Content = "NAME: " + byname.name;
                 // Description
-                Tbbeerdescription.Text = "DESCRIPTION: " + byyear.description;
+                Tbbeerdescription.Text = "DESCRIPTION: " + byname.description;
                 // First Brewd
-                LfirstBrewd.Content = "FIRST BREWD: " + byyear.first_brewed;
+                LfirstBrewd.Content = "FIRST BREWD: " + byname.first_brewed;
                 // ABV
-                Labv.Content = "ABV: " + byyear.abv;
+                Labv.Content = "ABV: " + byname.abv;
                 // Food paring first choice
-                Lfoodparing.Content = "FOOD PARING: " + byyear.food_pairing[0];
+                Lfoodparing.Content = "FOOD PARING: " + byname.food_pairing[0];
                 // Beer image
-                var fullFilePath = @byyear.image_url;
+                var fullFilePath = @byname.image_url;
                 BitmapImage bitmap = new BitmapImage();
                 bitmap.BeginInit();
                 bitmap.UriSource = new Uri(fullFilePath, UriKind.Absolute);
