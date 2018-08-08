@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:beerApp"
         mc:Ignorable="d"
-        Title="Beer App" Height="350" Width="525">
+        Title="Beer App" Height="650" Width="850">
     <Grid>
         <!-- Main Grid -->
         <Grid>
@@ -32,8 +32,8 @@
                         <RowDefinition Height="1*"/>
                         <RowDefinition Height="1*"/>
                     </Grid.RowDefinitions>
-                    <Button Margin="1" Grid.Row="0" x:Name="Bbeername" FontWeight="Bold" Content="GRAB BEERs BY NAME" Click="Bgraball_Click"/>
-                    <TextBox Margin="1" Grid.Row="1" x:Name="Tbbeername" FontWeight="Bold"/>
+                    <Button Margin="1" Grid.Row="0" x:Name="Bbeername" FontWeight="Bold" Content="GRAB BEERs BY NAME" Click="Bbeername_Click"/>
+                    <TextBox Margin="1" Grid.Row="1" x:Name="Tbbeername" FontWeight="Bold" HorizontalContentAlignment="Center" VerticalContentAlignment="Center"/>
                 </Grid>
 
                 <Grid Grid.Column="2">
@@ -41,8 +41,8 @@
                         <RowDefinition Height="1*"/>
                         <RowDefinition Height="1*"/>
                     </Grid.RowDefinitions>
-                    <Button Margin="1" Grid.Row="0" x:Name="Bbyyear" FontWeight="Bold" Content="GRAB BEERs BY YEAR" Click="Bgraball_Click"/>
-                    <TextBox Margin="1" Grid.Row="1" x:Name="Tbyear" FontWeight="Bold"/>
+                    <Button Margin="1" Grid.Row="0" x:Name="Bbyyear" FontWeight="Bold" Content="GRAB BEERs BY YEAR (brewed before)" Click="Bbyyear_Click"/>
+                    <TextBox Margin="1" Grid.Row="1" x:Name="Tbyear" FontWeight="Bold" HorizontalContentAlignment="Center" VerticalContentAlignment="Center"/>
                 </Grid>
             </Grid>
             <!-- Row 1 Grid Left for photo display-->

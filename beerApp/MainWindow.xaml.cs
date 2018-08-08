@@ -56,6 +56,66 @@ namespace beerApp
             Ibeerimage.Source = bitmap;
         }
 
+        private void Bbyyear_Click(object sender, RoutedEventArgs e)
+        {
+            rClient.endPoint = "https://api.punkapi.com/v2/beers" + "?brewed_before=" + Tbyear;
+            // Magic - Get JSON file
+            strResponse = rClient.MakeRequest();
+            var data = JsonConvert.DeserializeObject<IList<BeerData.AllInfo>>(strResponse);
+            if (data.Count != 0)
+            {
+                var byyear = data[0];
+                // Data for random beer
+                // Name field
+                Lbeername.Content = "NAME: " + byyear.name;
+                // Description
+                Tbbeerdescription.Text = "DESCRIPTION: " + byyear.description;
+                // First Brewd
+                LfirstBrewd.Content = "FIRST BREWD: " + byyear.first_brewed;
+                // ABV
+                Labv.Content = "ABV: " + byyear.abv;
+                // Food paring first choice
+                Lfoodparing.Content = "FOOD PARING: " + byyear.food_pairing[0];
+                // Beer image
+                var fullFilePath = @byyear.image_url;
+                BitmapImage bitmap = new BitmapImage();
+                bitmap.BeginInit();
+                bitmap.UriSource = new Uri(fullFilePath, UriKind.Absolute);
+                bitmap.EndInit();
+                Ibeerimage.Source = bitmap;
+            }
+        }
+
+        private void Bbeername_Click(object sender, RoutedEventArgs e)
+        {
+            rClient.endPoint = "https://api.punkapi.com/v2/beers" + "?beer_name=" + Tbbeername;
+            // Magic - Get JSON file
+            strResponse = rClient.MakeRequest();
+            var data = JsonConvert.DeserializeObject<IList<BeerData.AllInfo>>(strResponse);
+            var byyear = data[0];
+            if (data.Count != 0)
+            {
+                // Data for random beer
+                // Name field
+                Lbeername.Content = "NAME: " + byyear.name;
+                // Description
+                Tbbeerdescription.Text = "DESCRIPTION: " + byyear.description;
+                // First Brewd
+                LfirstBrewd.Content = "FIRST BREWD: " + byyear.first_brewed;
+                // ABV
+                Labv.Content = "ABV: " + byyear.abv;
+                // Food paring first choice
+                Lfoodparing.Content = "FOOD PARING: " + byyear.food_pairing[0];
+                // Beer image
+                var fullFilePath = @byyear.image_url;
+                BitmapImage bitmap = new BitmapImage();
+                bitmap.BeginInit();
+                bitmap.UriSource = new Uri(fullFilePath, UriKind.Absolute);
+                bitmap.EndInit();
+                Ibeerimage.Source = bitmap;
+            }
+        }
+
         private void Bprevious_Click(object sender, RoutedEventArgs e)
         {
 
@@ -68,7 +128,7 @@ namespace beerApp
             strResponse = rClient.MakeRequest();
             var data = JsonConvert.DeserializeObject<IList<BeerData.AllInfo>>(strResponse);
             var randomdata = data[0];
-            //
+            // Data for random beer
             // Name field
             Lbeername.Content = "NAME: " + randomdata.name;
             // Description
@@ -92,5 +152,6 @@ namespace beerApp
         {
             
         }
+
     }
 }
