@@ -57,6 +57,7 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="DataModel\Account.cs" />
     <Compile Include="DataModel\BeerData.cs" />
     <Compile Include="RestClient\RestClient.cs" />
     <Page Include="MainWindow.xaml">

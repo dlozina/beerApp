@@ -17,6 +17,7 @@
                 <RowDefinition Height="0.5*"/>
                 <RowDefinition Height="1*"/>
                 <RowDefinition Height="1*"/>
+                <RowDefinition Height="0.2*"/>
             </Grid.RowDefinitions>
             <!-- Row 0 Grid -->
             <Grid Grid.Row="0" ColumnSpan="2">
@@ -25,13 +26,13 @@
                     <ColumnDefinition Width="1*" />
                     <ColumnDefinition Width="1*" />
                 </Grid.ColumnDefinitions>
-                <Button Margin="1" Grid.Column="0" x:Name="Bgraball" FontWeight="Bold" Content="GRAB ALL THE BEERS" Click="Bgraball_Click"/>
-                <Grid Grid.Column="1">
+                <Button Margin="1" Grid.Column="1" x:Name="Bgraball" FontWeight="Bold" Content="GRAB ALL THE BEERs" Click="Bgraball_Click"/>
+                <Grid Grid.Column="0">
                     <Grid.RowDefinitions>
                         <RowDefinition Height="1*"/>
                         <RowDefinition Height="1*"/>
                     </Grid.RowDefinitions>
-                    <Button Margin="1" Grid.Row="0" x:Name="Bbeername" FontWeight="Bold" Content="GRAB BEER BY NAME" Click="Bgraball_Click"/>
+                    <Button Margin="1" Grid.Row="0" x:Name="Bbeername" FontWeight="Bold" Content="GRAB BEERs BY NAME" Click="Bgraball_Click"/>
                     <TextBox Margin="1" Grid.Row="1" x:Name="Tbbeername" FontWeight="Bold"/>
                 </Grid>
 
@@ -40,18 +41,14 @@
                         <RowDefinition Height="1*"/>
                         <RowDefinition Height="1*"/>
                     </Grid.RowDefinitions>
-                    <Button Margin="1" Grid.Row="0" x:Name="Bbyyear" FontWeight="Bold" Content="GRAB BEER BY YEAR" Click="Bgraball_Click"/>
+                    <Button Margin="1" Grid.Row="0" x:Name="Bbyyear" FontWeight="Bold" Content="GRAB BEERs BY YEAR" Click="Bgraball_Click"/>
                     <TextBox Margin="1" Grid.Row="1" x:Name="Tbyear" FontWeight="Bold"/>
                 </Grid>
-
-                
             </Grid>
-
             <!-- Row 1 Grid Left for photo display-->
             <Grid Grid.Row="1" Grid.Column="0" RowSpan="2">
-
+                <Image x:Name="Ibeerimage"/>
             </Grid>
-
             <!-- Row 1 Grid Right middle for Name and Description-->
             <Grid Grid.Row="1" Grid.Column="1" RowSpan="1">
                 <Grid.RowDefinitions>
@@ -60,10 +57,11 @@
                     <RowDefinition Height="1*"/>
                 </Grid.RowDefinitions>
                 <Label Grid.Row="0" Margin="1"  x:Name="Lbeername"/>
-                <Label Grid.Row="1" Grid.RowSpan="2" Margin="1"  x:Name="Lbeerdescription"/>
-            </Grid>
 
-            <!-- Row 2 Grid Right bottom for First brewed AVB and food paring-->
+                <TextBlock Grid.Row="1" Margin="1" Grid.RowSpan="2" x:Name="Tbbeerdescription" TextWrapping="Wrap"/>
+
+            </Grid>
+            <!-- Row 2 Grid Right for First brewed AVB and food paring-->
             <Grid Grid.Row="2" Grid.Column="1">
                 <Grid.RowDefinitions>
                     <RowDefinition Height="1*"/>
@@ -73,6 +71,17 @@
                 <Label Grid.Row="0" Margin="1"  x:Name="LfirstBrewd"/>
                 <Label Grid.Row="1" Margin="1"  x:Name="Labv"/>
                 <Label Grid.Row="2" Margin="1"  x:Name="Lfoodparing"/>
+            </Grid>
+            <!-- Row 3 Grid for the Previous, Next and Random bottun -->
+            <Grid Grid.Row="3" Grid.Column="0" Grid.ColumnSpan="2">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="1*" />
+                    <ColumnDefinition Width="1*" />
+                    <ColumnDefinition Width="1*" />
+                </Grid.ColumnDefinitions>
+                <Button Margin="1" Grid.Column="0" x:Name="Bprevious" FontWeight="Bold" Content="PREVIOUS" Click="Bprevious_Click" />
+                <Button Margin="1" Grid.Column="1" x:Name="Brandom" FontWeight="Bold" Content="GRAB RANDOM BEER" Click="Brandom_Click" />
+                <Button Margin="1" Grid.Column="2" x:Name="Bnext" FontWeight="Bold" Content="NEXT" Click="Bnext_Click" />
             </Grid>
 
 

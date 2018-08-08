@@ -28,17 +28,69 @@ namespace beerApp
             InitializeComponent();
         }
         string strResponse = String.Empty;
+        RestClient.RestClient rClient = new RestClient.RestClient();
 
         private void Bgraball_Click(object sender, RoutedEventArgs e)
         {
-            RestClient.RestClient rClient = new RestClient.RestClient();
             rClient.endPoint = "https://api.punkapi.com/v2/beers";
             // Magic - Get JSON file
             strResponse = rClient.MakeRequest();
-            var data = JsonConvert.DeserializeObject<IList<BeerData>>(strResponse);
+            var data = JsonConvert.DeserializeObject<IList<BeerData.AllInfo>>(strResponse);
             var firstBeer = data[0];
-            Lbeername.Content = firstBeer;
+            // Name field
+            Lbeername.Content = "NAME: " + firstBeer.name;
+            // Description
+            Tbbeerdescription.Text = "DESCRIPTION: " + firstBeer.description;
+            // First Brewd
+            LfirstBrewd.Content = "FIRST BREWD: " + firstBeer.first_brewed;
+            // ABV
+            Labv.Content = "ABV: " + firstBeer.abv;
+            // Food paring first choice
+            Lfoodparing.Content = "FOOD PARING: " + firstBeer.food_pairing[0];
+            // Beer image
+            var fullFilePath = @firstBeer.image_url;
+            BitmapImage bitmap = new BitmapImage();
+            bitmap.BeginInit();
+            bitmap.UriSource = new Uri(fullFilePath, UriKind.Absolute);
+            bitmap.EndInit();
+            Ibeerimage.Source = bitmap;
         }
 
+        private void Bprevious_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
+
+        private void Brandom_Click(object sender, RoutedEventArgs e)
+        {
+            rClient.endPoint = "https://api.punkapi.com/v2/beers/random";
+            // Magic - Get JSON file
+            strResponse = rClient.MakeRequest();
+            var data = JsonConvert.DeserializeObject<IList<BeerData.AllInfo>>(strResponse);
+            var randomdata = data[0];
+            //
+            // Name field
+            Lbeername.Content = "NAME: " + randomdata.name;
+            // Description
+            Tbbeerdescription.Text = "DESCRIPTION: " + randomdata.description;
+            // First Brewd
+            LfirstBrewd.Content = "FIRST BREWD: " + randomdata.first_brewed;
+            // ABV
+            Labv.Content = "ABV: " + randomdata.abv;
+            // Food paring first choice
+            Lfoodparing.Content = "FOOD PARING: " + randomdata.food_pairing[0];
+            // Beer image
+            var fullFilePath = @randomdata.image_url;
+            BitmapImage bitmap = new BitmapImage();
+            bitmap.BeginInit();
+            bitmap.UriSource = new Uri(fullFilePath, UriKind.Absolute);
+            bitmap.EndInit();
+            Ibeerimage.Source = bitmap;
+        }
+
+        private void Bnext_Click(object sender, RoutedEventArgs e)
+        {
+            
+        }
     }
 }
