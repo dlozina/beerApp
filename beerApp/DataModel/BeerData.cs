@@ -98,6 +98,7 @@ namespace beerApp.DataModel
             public double? ibu { get; set; }
             public int target_fg { get; set; }
             public double target_og { get; set; }
+            // One of the beers has ebc in decimal
             //public int? ebc { get; set; }
             public double? ebc { get; set; }
             public double? srm { get; set; }

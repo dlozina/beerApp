@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Runtime.CompilerServices;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
@@ -26,6 +27,10 @@ namespace beerApp
         public MainWindow()
         {
             InitializeComponent();
+            // Set Datacontext for binding
+            TextBoxData textBox = new TextBoxData();
+            this.DataContext = textBox;
+            // Disable buttons
             Bnext.IsEnabled = false;
             Bprevious.IsEnabled = false;
         }
@@ -35,7 +40,9 @@ namespace beerApp
         // Global list for memory
         private IList<BeerData.AllInfo> memory;  
         RestClient.RestClient rClient = new RestClient.RestClient();
+        // VALIDATE YEAR INPUT FOR TEXT BOX
 
+        // BUTTON GRAB ALL BEER FROM API
         private void Bgraball_Click(object sender, RoutedEventArgs e)
         {
             rClient.endPoint = "https://api.punkapi.com/v2/beers";
@@ -65,7 +72,7 @@ namespace beerApp
             Bnext.IsEnabled = true;
             Bprevious.IsEnabled = true;
         }
-
+        // BUTTON SEARCH BEER BY YEAR
         private void Bbyyear_Click(object sender, RoutedEventArgs e)
         {
             rClient.endPoint = "https://api.punkapi.com/v2/beers" + "?brewed_before=" + Tbyear;
@@ -103,7 +110,7 @@ namespace beerApp
                 Tbbeerdescription.Text = "NO BEER GRABED FROM API !";
             }
         }
-
+        // BUTTON SEARCH BEER BY NAME
         private void Bbeername_Click(object sender, RoutedEventArgs e)
         {
             rClient.endPoint = "https://api.punkapi.com/v2/beers" + "?beer_name=" + Tbbeername; 

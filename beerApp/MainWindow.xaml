@@ -4,6 +4,7 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:beerApp"
+        xmlns:validators="clr-namespace:beerApp.DataModel" 
         mc:Ignorable="d"
         Title="Beer App" Height="650" Width="850">
     <Grid>
@@ -33,7 +34,7 @@
                         <RowDefinition Height="1*"/>
                     </Grid.RowDefinitions>
                     <Button Margin="1" Grid.Row="0" x:Name="Bbeername" FontWeight="Bold" Content="GRAB BEERs BY NAME" Click="Bbeername_Click"/>
-                    <TextBox Margin="1" Grid.Row="1" x:Name="Tbbeername" FontWeight="Bold" HorizontalContentAlignment="Center" VerticalContentAlignment="Center"/>
+                    <TextBox Margin="1" Grid.Row="1" x:Name="Tbbeername" FontWeight="Bold" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" Text="IPA"/>
                 </Grid>
                 <Grid Grid.Column="0">
                     <Grid.RowDefinitions>
@@ -41,7 +42,15 @@
                         <RowDefinition Height="1*"/>
                     </Grid.RowDefinitions>
                     <Button Margin="1" Grid.Row="0" x:Name="Bbyyear" FontWeight="Bold" Content="GRAB BEERs BY YEAR (brewed before)" Click="Bbyyear_Click"/>
-                    <TextBox Margin="1" Grid.Row="1" x:Name="Tbyear" FontWeight="Bold" HorizontalContentAlignment="Center" VerticalContentAlignment="Center"/>
+                    <TextBox Margin="1" Grid.Row="1" x:Name="Tbyear" FontWeight="Bold" HorizontalContentAlignment="Center" VerticalContentAlignment="Center">
+                        <TextBox.Text>
+                            <Binding Path="Year" UpdateSourceTrigger="PropertyChanged">
+                                <Binding.ValidationRules>
+                                    <validators:StringRangeValidationRule MinimumLength="7" ErrorMessage="Year is required!"/>
+                                </Binding.ValidationRules>
+                            </Binding>
+                        </TextBox.Text>
+                    </TextBox>
                 </Grid>
             </Grid>
             <!-- Row 1 Grid Left for photo display-->
