@@ -1,7 +1,7 @@
 # beerApp
 
 Goal of this APP is to fetch data from public PunkAPI.
-All the documantation can be found on https://punkapi.com/documentation/v2
+All the documentation can be found on https://punkapi.com/documentation/v2
 
 With this APP we can:
 1. Fetch all data from public API
