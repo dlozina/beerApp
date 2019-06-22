@@ -13,3 +13,7 @@ With this APP we can:
 This is how APP looks like:
 
 ![App5](https://user-images.githubusercontent.com/28594128/59967869-e8e80780-9530-11e9-8b0b-ff5f5175e0fc.PNG)
+
+One interesting thing is that all the data app gathers from API call I save in JSON file. Some times building JSON file class can be tricky but in fact really easy when you get the hang of it, good help to understand how to build can be found on https://jsoneditoronline.org/ and http://json2csharp.com/.
+
+Data can be searched (for example by name) by searching jArray.
